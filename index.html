@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AUREN — Modern Wellness for Men</title>
+  <meta name="description" content="Premium digital guides for the modern man. Style, grooming, fragrance, and home skills — instantly downloadable." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;1,400&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --orange: #FF6A00;
+      --orange-dark: #CC5500;
+      --dark: #0E0E0E;
+      --dark-2: #141414;
+      --dark-3: #1A1A1A;
+      --dark-4: #2A2A2A;
+      --gray: #6B6B6B;
+      --gray-light: #9A9A9A;
+      --sand: #9A6A3A;
+      --white: #F7F7F7;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dark);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 4rem;
+      background: rgba(14,14,14,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--dark-4);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-diamond {
+      width: 26px;
+      height: 26px;
+      background: var(--orange);
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      flex-shrink: 0;
+    }
+
+    .nav-brand {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      color: var(--white);
+    }
+
+    .nav-tagline {
+      font-size: 9px;
+      color: var(--gray);
+      letter-spacing: 2.5px;
+      display: block;
+      margin-top: -2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .btn-primary {
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      padding: 10px 28px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      cursor: pointer;
+      border-radius: 2px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn-primary:hover { background: var(--orange-dark); }
+    .btn-primary:active { transform: scale(0.98); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 4rem 5rem;
+      gap: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(255,106,0,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-left {
+      flex: 1;
+      max-width: 520px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--orange);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      padding: 5px 14px;
+      border-radius: 2px;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 72px;
+      font-weight: 700;
+      line-height: 0.95;
+      margin-bottom: 1rem;
+      color: var(--white);
+    }
+
+    .hero-title .accent { color: var(--orange); }
+
+    .hero-sub {
+      font-size: 12px;
+      color: var(--sand);
+      letter-spacing: 3px;
+      margin-bottom: 1.25rem;
+      font-weight: 600;
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      color: var(--gray);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      max-width: 420px;
+    }
+
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 2.5rem;
+    }
+
+    .pill {
+      background: var(--dark-3);
+      border: 0.5px solid var(--dark-4);
+      color: var(--gray-light);
+      font-size: 11px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      letter-spacing: 1.5px;
+    }
+
+    .hero-cta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .btn-ghost {
+      color: var(--gray);
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--dark-4);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .btn-ghost:hover { color: var(--white); border-color: var(--gray); }
+
+    /* ── CHAT AGENT ── */
+    .hero-right {
+      flex: 1;
+      max-width: 400px;
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+
+    .chat-card {
+      background: var(--dark-2);
+      border: 0.5px solid var(--dark-4);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+    }
+
+    .chat-header {
+      background: var(--dark-3);
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 0.5px solid var(--dark-4);
+    }
+
+    .chat-dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 8px rgba(255,106,0,0.5);
+    }
+
+    .chat-header-info { flex: 1; }
+    .chat-header-name { font-size: 13px; font-weight: 600; color: var(--white); }
+    .chat-header-status { font-size: 11px; color: var(--gray); }
+
+    .chat-body {
+      padding: 1.5rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 300px;
+      max-height: 360px;
+      overflow-y: auto;
+    }
+
+    .chat-body::-webkit-scrollbar { width: 4px; }
+    .chat-body::-webkit-scrollbar-track { background: transparent; }
+    .chat-body::-webkit-scrollbar-thumb { background: var(--dark-4); border-radius: 2px; }
+
+    .msg {
+      max-width: 88%;
+      font-size: 13px;
+      line-height: 1.6;
+      padding: 10px 14px;
+      border-radius: 10px;
+      white-space: pre-line;
+    }
+
+    .msg-agent {
+      background: var(--dark-3);
+      color: #D0D0D0;
+      align-self: flex-start;
+      border: 0.5px solid var(--dark-4);
+      border-top-left-radius: 2px;
+    }
+
+    .msg-user {
+      background: var(--orange);
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 2px;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-top: 4px;
+    }
+
+    .opt-btn {
+      background: var(--dark-3);
+      border: 0.5px solid var(--dark-4);
+      color: #C0C0C0;
+      font-family: 'Barlow', sans-serif;
+      font-size: 12px;
+      padding: 9px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: left;
+      letter-spacing: 0.5px;
+      transition: all 0.2s;
+    }
+
+    .opt-btn:hover, .opt-btn.selected {
+      border-color: var(--orange);
+      color: var(--orange);
+      background: rgba(255,106,0,0.06);
+    }
+
+    .chat-input-row {
+      display: flex;
+      gap: 8px;
+      padding: 1rem 1.25rem;
+      border-top: 0.5px solid var(--dark-4);
+    }
+
+    .chat-input {
+      flex: 1;
+      background: var(--dark-3);
+      border: 0.5px solid var(--dark-4);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      padding: 9px 14px;
+      border-radius: 6px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .chat-input:focus { border-color: var(--orange); }
+    .chat-input::placeholder { color: var(--gray); }
+
+    .chat-send {
+      background: var(--orange);
+      border: none;
+      color: #fff;
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .chat-send:hover { background: var(--orange-dark); }
+
+    .typing {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      padding: 12px 14px;
+      background: var(--dark-3);
+      border-radius: 10px;
+      border: 0.5px solid var(--dark-4);
+      align-self: flex-start;
+      border-top-left-radius: 2px;
+    }
+
+    .typing span {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--orange);
+      animation: blink 1.2s infinite;
+    }
+
+    .typing span:nth-child(2) { animation-delay: 0.2s; }
+    .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes blink {
+      0%, 80%, 100% { opacity: 0.2; }
+      40% { opacity: 1; }
+    }
+
+    /* ── PRODUCTS ── */
+    .products {
+      padding: 6rem 4rem;
+      background: #0A0A0A;
+      border-top: 0.5px solid var(--dark-3);
+    }
+
+    .section-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: var(--orange);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 3rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--dark-3);
+      border: 1px solid var(--dark-3);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .product-card {
+      background: var(--dark);
+      padding: 2rem 1.75rem;
+      transition: background 0.25s;
+      cursor: pointer;
+    }
+
+    .product-card:hover { background: var(--dark-2); }
+
+    .product-line-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--gray);
+      margin-bottom: 0.5rem;
+    }
+
+    .product-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+
+    .product-desc {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .product-price {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--orange);
+    }
+
+    .product-buy {
+      background: transparent;
+      border: 0.5px solid var(--dark-4);
+      color: var(--gray);
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      padding: 7px 16px;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .product-buy:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    /* ── BUNDLE ── */
+    .bundles {
+      padding: 5rem 4rem;
+      background: var(--dark);
+    }
+
+    .bundle-card {
+      background: var(--dark-2);
+      border: 0.5px solid var(--dark-4);
+      border-radius: 10px;
+      padding: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 1px;
+      transition: border-color 0.2s;
+    }
+
+    .bundle-card:hover { border-color: var(--orange); }
+    .bundle-card:first-of-type { border-radius: 10px 10px 2px 2px; margin-bottom: 1px; }
+    .bundle-card:last-of-type { border-radius: 2px 2px 10px 10px; }
+
+    .bundle-featured {
+      border-color: var(--orange) !important;
+      background: rgba(255,106,0,0.04);
+      position: relative;
+    }
+
+    .bundle-badge {
+      position: absolute;
+      top: -12px; left: 2rem;
+      background: var(--orange);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      padding: 4px 12px;
+      border-radius: 2px;
+    }
+
+    .bundle-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+
+    .bundle-includes {
+      font-size: 12px;
+      color: var(--gray);
+      letter-spacing: 0.5px;
+    }
+
+    .bundle-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .bundle-savings {
+      font-size: 11px;
+      color: var(--sand);
+      letter-spacing: 1px;
+    }
+
+    .bundle-price {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--orange);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #080808;
+      border-top: 0.5px solid var(--dark-3);
+      padding: 3rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    .footer-copy a {
+      color: var(--sand);
+      text-decoration: none;
+    }
+
+    .footer-right {
+      text-align: right;
+      font-size: 11px;
+      color: #333;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .hero { flex-direction: column; padding: 7rem 1.5rem 3rem; gap: 3rem; }
+      .hero-left, .hero-right { max-width: 100%; }
+      .hero-title { font-size: 52px; }
+      .products { padding: 4rem 1.5rem; }
+      .products-grid { grid-template-columns: 1fr; }
+      .bundles { padding: 3rem 1.5rem; }
+      .bundle-card { flex-direction: column; align-items: flex-start; }
+      footer { flex-direction: column; padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <div class="logo-diamond"></div>
+      <div>
+        <span class="nav-brand">AUREN</span>
+        <span class="nav-tagline">STYLE. HEALTH. PERFORMANCE.</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#guides">Guides</a>
+      <a href="#bundles">Bundles</a>
+      <a href="#agent">About</a>
+      <a href="#guides" class="btn-primary">Shop Now</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="agent">
+    <div class="hero-left">
+      <div class="hero-badge">NEW — DIGITAL GUIDES FOR MEN</div>
+      <h1 class="hero-title">Level up.<br>Every <span class="accent">detail.</span></h1>
+      <p class="hero-sub">Style. Skincare. Fragrance. Home.</p>
+      <p class="hero-desc">Premium guides that teach you exactly what to buy, what to ask for, and how to show up at your best — every day.</p>
+      <div class="hero-pills">
+        <span class="pill">Grooming</span>
+        <span class="pill">Style</span>
+        <span class="pill">Fragrance</span>
+        <span class="pill">Home Skills</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#guides" class="btn-primary">Browse Guides →</a>
+        <a href="#agent" class="btn-ghost">Talk to our guide</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="chat-card">
+        <div class="chat-header">
+          <div class="chat-dot"></div>
+          <div class="chat-header-info">
+            <div class="chat-header-name">Auren Guide</div>
+            <div class="chat-header-status">Online — ask me anything</div>
+          </div>
+        </div>
+        <div class="chat-body" id="chat-body">
+          <div class="msg msg-agent">Hey! Welcome to Auren 👋<br>What are you looking to level up today?</div>
+          <div class="options-grid" id="options">
+            <button class="opt-btn" onclick="selectOption(this,'style')">My style &amp; wardrobe</button>
+            <button class="opt-btn" onclick="selectOption(this,'skin')">My skincare routine</button>
+            <button class="opt-btn" onclick="selectOption(this,'scent')">Colognes &amp; fragrances</button>
+            <button class="opt-btn" onclick="selectOption(this,'home')">Home &amp; life skills</button>
+          </div>
+        </div>
+        <div class="chat-input-row">
+          <input id="agent-input" class="chat-input" placeholder="Or type your question..." onkeydown="if(event.key==='Enter')sendMsg()" />
+          <button class="chat-send" onclick="sendMsg()">↑</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products" id="guides">
+    <p class="section-eyebrow">OUR GUIDES</p>
+    <h2 class="section-title">Built for the modern man.</h2>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-line-label">STYLE</div>
+        <div class="product-name">Color Code</div>
+        <p class="product-desc">What colors to wear by season, skin tone, and occasion. Never guess again.</p>
+        <div class="product-footer">
+          <div class="product-price">$9</div>
+          <button class="product-buy">GET GUIDE</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-line-label">GROOMING</div>
+        <div class="product-name">The Skin Fix</div>
+        <p class="product-desc">Complete men's skincare routine — ingredients, product types, and what to ask for.</p>
+        <div class="product-footer">
+          <div class="product-price">$12</div>
+          <button class="product-buy">GET GUIDE</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-line-label">FRAGRANCE</div>
+        <div class="product-name">Scent Smart</div>
+        <p class="product-desc">How to choose, wear, and layer colognes by occasion and season.</p>
+        <div class="product-footer">
+          <div class="product-price">$14</div>
+          <button class="product-buy">GET GUIDE</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-line-label">STYLE</div>
+        <div class="product-name">Wardrobe Manual</div>
+        <p class="product-desc">Name every clothing piece correctly — so you know exactly what to buy.</p>
+        <div class="product-footer">
+          <div class="product-price">$11</div>
+          <button class="product-buy">GET GUIDE</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-line-label">GROOMING</div>
+        <div class="product-name">The Face Routine</div>
+        <p class="product-desc">Step-by-step daily and weekly facial care guide designed specifically for men.</p>
+        <div class="product-footer">
+          <div class="product-price">$12</div>
+          <button class="product-buy">GET GUIDE</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-line-label">HOME SKILLS</div>
+        <div class="product-name">Home Skills 101</div>
+        <p class="product-desc">Essential home repair, maintenance, and life skills every man should have.</p>
+        <div class="product-footer">
+          <div class="product-price">$17</div>
+          <button class="product-buy">GET GUIDE</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUNDLES -->
+  <section class="bundles" id="bundles">
+    <p class="section-eyebrow">SAVE MORE</p>
+    <h2 class="section-title">Bundle &amp; save.</h2>
+
+    <div class="bundle-card" style="border-radius:10px 10px 2px 2px; margin-bottom:1px;">
+      <div>
+        <div class="bundle-name">The Starter Pack</div>
+        <div class="bundle-includes">Color Code + Wardrobe Manual + Scent Smart</div>
+      </div>
+      <div class="bundle-right">
+        <div class="bundle-savings">SAVE $7</div>
+        <div class="bundle-price">$27</div>
+        <button class="btn-primary">GET BUNDLE</button>
+      </div>
+    </div>
+
+    <div class="bundle-card bundle-featured" style="border-radius:2px; margin-bottom:1px; position:relative;">
+      <div class="bundle-badge">MOST POPULAR</div>
+      <div>
+        <div class="bundle-name">Full Grooming Kit</div>
+        <div class="bundle-includes">The Skin Fix + The Face Routine + Scent Smart</div>
+      </div>
+      <div class="bundle-right">
+        <div class="bundle-savings">SAVE $9</div>
+        <div class="bundle-price">$29</div>
+        <button class="btn-primary">GET BUNDLE</button>
+      </div>
+    </div>
+
+    <div class="bundle-card" style="border-radius:2px 2px 10px 10px;">
+      <div>
+        <div class="bundle-name">The Complete Man</div>
+        <div class="bundle-includes">All 6 core guides — everything you need</div>
+      </div>
+      <div class="bundle-right">
+        <div class="bundle-savings">SAVE $21</div>
+        <div class="bundle-price">$49</div>
+        <button class="btn-primary">GET BUNDLE</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div class="footer-brand">
+        <div class="logo-diamond" style="width:20px;height:20px;"></div>
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:4px;font-weight:700;">AUREN</span>
+      </div>
+      <p class="footer-copy">Modern Wellness for Men.<br>Digital guides delivered instantly.</p>
+    </div>
+    <div class="footer-right">
+      <p>© 2025 Auren. All rights reserved.</p>
+      <p style="margin-top:4px;">Built by José Quirós &amp; Gabriel García</p>
+    </div>
+  </footer>
+
+  <script>
+    const responses = {
+      style: {
+        user: "My style & wardrobe",
+        agent: "Great choice. Looking sharp starts with knowing your pieces.\n\nHere are two guides for you:\n📘 Color Code — what colors work for your skin tone & season → $9\n👔 Wardrobe Manual — name every piece, know exactly what to buy → $11\n\nOr grab both for $17. Check them out below 👇"
+      },
+      skin: {
+        user: "My skincare routine",
+        agent: "Solid move — skincare is one of the highest ROI habits a man can build.\n\nHere's what fits:\n🧴 The Skin Fix — full routine from scratch → $12\n🫧 The Face Routine — daily & weekly system → $12\n\nGrab both for $19 with The Grooming Starter. Check them out below 👇"
+      },
+      scent: {
+        user: "Colognes & fragrances",
+        agent: "Fragrance is your invisible accessory — and most men get it completely wrong.\n\nOne guide for you:\n🌬️ Scent Smart — how to choose, wear & layer colognes by season & occasion → $14\n\nThis one guide will change how you shop for scent forever. Check it out below 👇"
+      },
+      home: {
+        user: "Home & life skills",
+        agent: "The most underrated skill set for any man.\n\n🔧 Home Skills 101 — essential repairs, maintenance & home know-how → $17\n\nPart of our 'The Useful Man' line. Practical, clear, and straight to the point. Check it out below 👇"
+      }
+    };
+
+    function selectOption(btn, key) {
+      document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      const r = responses[key];
+      setTimeout(() => addMessage(r.user, 'user'), 100);
+      setTimeout(() => showTyping(), 600);
+      setTimeout(() => { removeTyping(); addMessage(r.agent, 'agent'); }, 1900);
+    }
+
+    function sendMsg() {
+      const input = document.getElementById('agent-input');
+      const val = input.value.trim();
+      if (!val) return;
+      addMessage(val, 'user');
+      input.value = '';
+      setTimeout(() => showTyping(), 400);
+      setTimeout(() => {
+        removeTyping();
+        addMessage("Thanks for your question! Our guides cover style, grooming, fragrance, and home skills.\n\nPick a topic above and I'll point you to the right guide — or scroll down to browse all of them.", 'agent');
+      }, 1700);
+    }
+
+    function addMessage(text, type) {
+      const body = document.getElementById('chat-body');
+      const opts = document.getElementById('options');
+      if (opts) opts.style.display = 'none';
+      const msg = document.createElement('div');
+      msg.className = 'msg msg-' + type;
+      msg.textContent = text;
+      body.appendChild(msg);
+      body.scrollTop = body.scrollHeight;
+    }
+
+    function showTyping() {
+      const body = document.getElementById('chat-body');
+      const t = document.createElement('div');
+      t.className = 'typing'; t.id = 'typing';
+      t.innerHTML = '<span></span><span></span><span></span>';
+      body.appendChild(t);
+      body.scrollTop = body.scrollHeight;
+    }
+
+    function removeTyping() {
+      const t = document.getElementById('typing');
+      if (t) t.remove();
+    }
+  </script>
+</body>
+</html>
