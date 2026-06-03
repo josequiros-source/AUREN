@@ -644,17 +644,27 @@
     </div>
 
     <div class="hero-right">
-      <div style="background:var(--dark-2);border:0.5px solid var(--dark-4);border-radius:14px;padding:2rem;text-align:center;box-shadow:0 40px 80px rgba(0,0,0,0.5);">
-        <div style="width:48px;height:48px;background:var(--orange);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);margin:0 auto 1rem;"></div>
-        <p style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--white);letter-spacing:2px;margin-bottom:0.5rem;">AUREN GUIDE</p>
-        <p style="font-size:12px;color:var(--gray);letter-spacing:1px;margin-bottom:1.5rem;">AI-powered — ask me anything</p>
-        <p style="font-size:14px;color:#C0C0C0;line-height:1.7;margin-bottom:1.5rem;">Ask me about skincare, style, fragrance, or home skills — I will point you to the right guide.</p>
-        <div style="display:flex;flex-direction:column;gap:8px;">
-          <span style="background:var(--dark-3);border:0.5px solid var(--dark-4);color:var(--gray-light);font-size:11px;padding:8px 14px;border-radius:20px;letter-spacing:1px;">💬 Why should I buy The Skin Fix?</span>
-          <span style="background:var(--dark-3);border:0.5px solid var(--dark-4);color:var(--gray-light);font-size:11px;padding:8px 14px;border-radius:20px;letter-spacing:1px;">💬 What is the best bundle for me?</span>
-          <span style="background:var(--dark-3);border:0.5px solid var(--dark-4);color:var(--gray-light);font-size:11px;padding:8px 14px;border-radius:20px;letter-spacing:1px;">💬 I have never had a skincare routine</span>
+      <div class="chat-card">
+        <div class="chat-header">
+          <div class="chat-dot"></div>
+          <div class="chat-header-info">
+            <div class="chat-header-name">Auren Guide</div>
+            <div class="chat-header-status">Online — ask me anything</div>
+          </div>
         </div>
-        <p style="font-size:11px;color:var(--orange);margin-top:1.5rem;letter-spacing:1px;">👇 Chat opens in the bottom right corner</p>
+        <div class="chat-body" id="chat-body">
+          <div class="msg msg-agent">Hey! Welcome to Auren 👋<br>What are you looking to level up today?</div>
+          <div class="options-grid" id="options">
+            <button class="opt-btn" onclick="selectOption(this,'style')">My style &amp; wardrobe</button>
+            <button class="opt-btn" onclick="selectOption(this,'skin')">My skincare routine</button>
+            <button class="opt-btn" onclick="selectOption(this,'scent')">Colognes &amp; fragrances</button>
+            <button class="opt-btn" onclick="selectOption(this,'home')">Home &amp; life skills</button>
+          </div>
+        </div>
+        <div class="chat-input-row">
+          <input id="agent-input" class="chat-input" placeholder="Or type your question..." onkeydown="if(event.key==='Enter')sendMsg()" />
+          <button class="chat-send" onclick="sendMsg()">↑</button>
+        </div>
       </div>
     </div>
   </section>
