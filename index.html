@@ -256,8 +256,12 @@
       gap: 10px;
       min-height: 300px;
       max-height: 360px;
-      overflow-y: auto;
+      overflow-y: scroll;
+      scroll-behavior: smooth;
     }
+    .chat-body::-webkit-scrollbar { width: 4px; }
+    .chat-body::-webkit-scrollbar-track { background: transparent; }
+    .chat-body::-webkit-scrollbar-thumb { background: var(--dark-4); border-radius: 2px; }
 
     .chat-body::-webkit-scrollbar { width: 4px; }
     .chat-body::-webkit-scrollbar-track { background: transparent; }
@@ -818,17 +822,44 @@
       setTimeout(() => { removeTyping(); addMessage(r.agent, 'agent'); }, 1900);
     }
 
+    const greetings = ['hi','hello','hey','hola','sup','what's up','whats up','good morning','good afternoon','yo'];
+    const skincare = ['skin','skincare','face','moistur','cleanser','acne','pore','routine','cream','spf','sunscreen'];
+    const style = ['style','color','wear','outfit','wardrobe','clothes','fashion','dress','shirt','pants','shoes'];
+    const scent = ['cologne','fragrance','scent','perfume','smell','spray','wear'];
+    const home = ['home','house','repair','fix','useful','cook','kitchen','tool'];
+    const price = ['price','cost','how much','cheap','expensive','bundle','deal','discount','save'];
+
+    function detectIntent(msg) {
+      const m = msg.toLowerCase();
+      if (greetings.some(g => m.includes(g))) return 'greeting';
+      if (skincare.some(k => m.includes(k))) return 'skin';
+      if (style.some(k => m.includes(k))) return 'style';
+      if (scent.some(k => m.includes(k))) return 'scent';
+      if (home.some(k => m.includes(k))) return 'home';
+      if (price.some(k => m.includes(k))) return 'price';
+      return 'default';
+    }
+
+    const smartResponses = {
+      greeting: "Hey! 👋 Welcome to Auren. I'm here to help you level up — style, skincare, fragrance, or home skills. What are you working on?",
+      skin: "Your skin is the first thing people notice — most men ignore it until it's too late. 🧴 The Skin Fix gives you a complete routine in 5 minutes a day. Want to know what's inside?",
+      style: "Most men wear the wrong colors for their skin tone without knowing it. 📘 Color Code fixes that in one read — and the Wardrobe Manual teaches you to name every piece so you buy right. Which one fits you?",
+      scent: "Wearing the wrong cologne for the season is like wearing a winter coat in July. 🌬️ Scent Smart teaches you to match scent to moment — and be remembered. Want the details?",
+      home: "The man who can fix things commands respect. 🔧 Home Skills 101 covers the 20 skills every man should have but most were never taught. Interested?",
+      price: "Our guides start at $9 and go up to $17. The best deal is The Complete Man bundle — all 6 guides for $49 (save $21). Want to see what's included?",
+      default: "Great question! Our guides cover style, grooming, fragrance, and home skills — all built for men who want to show up better. Pick a topic from the options above or ask me anything specific. 👆"
+    };
+
     function sendMsg() {
       const input = document.getElementById('agent-input');
       const val = input.value.trim();
       if (!val) return;
       addMessage(val, 'user');
       input.value = '';
+      const intent = detectIntent(val);
+      const reply = smartResponses[intent];
       setTimeout(() => showTyping(), 400);
-      setTimeout(() => {
-        removeTyping();
-        addMessage("Thanks for your question! Our guides cover style, grooming, fragrance, and home skills.\n\nPick a topic above and I'll point you to the right guide — or scroll down to browse all of them.", 'agent');
-      }, 1700);
+      setTimeout(() => { removeTyping(); addMessage(reply, 'agent'); }, 1700);
     }
 
     function addMessage(text, type) {
